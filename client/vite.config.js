@@ -2,14 +2,16 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import "dotenv/config.js";
 
-const PORT = process.env.PORT || 3000;
+const CLIENT_PORT = process.env.CLIENT_PORT;
+const PROXY_PORT = process.env.PROXY_PORT;
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
+    port: CLIENT_PORT,
     proxy: {
-      "/api": `http://localhost:${PORT}`,
+      "/api": `http://localhost:${PROXY_PORT}`,
     },
   },
 });
