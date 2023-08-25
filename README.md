@@ -1,2 +1,3 @@
 # login-auth
-React + Express
+Vite React + Express
+Using MERN stack
