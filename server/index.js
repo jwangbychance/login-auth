@@ -1,23 +1,19 @@
 import "dotenv/config.js";
 import express from "express";
-import path from "path";
 import mongoose from "mongoose";
-import { fileURLToPath } from "url";
 import cors from "cors";
 import router from "./routes/apiRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+app.use(express.json());
 app.use(cors());
 app.use("/api", router);
-app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/index.html"));
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something went wrong!");
 });
 
 app.listen(PORT, () => {
