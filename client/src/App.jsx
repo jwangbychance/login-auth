@@ -1,29 +1,47 @@
 import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
 import axios from "axios";
 
 function App() {
-  const [users, setUsers] = useState([]);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const response = await axios.get("/api/users");
-        setUsers(response.data);
-      } catch (err) {
-        console.error(err);
-      }
+  const signup = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("/api/sign-up", { username, password }).then((res) => {
+        if (res.status === 200 && window) {
+          window.location.href = "/profile";
+          // or <Redirect to="/profile" /> if using react-router
+        }
+      });
+    } catch (err) {
+      console.error(err);
     }
-    fetchUsers();
-  }, []);
+  };
 
   return (
-    <div>
-      {users.map((user) => (
-        <div key={user.id}>{user.username}</div>
-      ))}
+    <div className="">
+      <h1 className="">Sign Up</h1>
+      <form action="" method="POST" onSubmit={signup}>
+        <label for="username">Username</label>
+        <input
+          name="username"
+          placeholder="username"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <label for="password">Password</label>
+        <input
+          name="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button>Sign Up</button>
+      </form>
     </div>
   );
 }
