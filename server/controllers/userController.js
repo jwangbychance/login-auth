@@ -8,3 +8,16 @@ export const getUserById = asyncHandler(async (req, res, next) => {
 export const getUsers = asyncHandler(async (req, res, next) => {
   res.send(`NOT IMPLEMENTED: User detail: ${req.params.id}`);
 });
+
+export const signupUser = asyncHandler(async (req, res, next) => {
+  try {
+    const user = new UserSchema({
+      username: req.body.username,
+      password: req.body.password,
+    });
+    const result = await user.save();
+    res.send("ok");
+  } catch (err) {
+    return next(err);
+  }
+});
