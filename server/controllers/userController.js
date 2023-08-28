@@ -25,7 +25,7 @@ export const signupUser = asyncHandler(async (req, res, next) => {
     if (existingUser) {
       return res.status(409).json({
         message:
-          "Username already exists. Please login or try another username.",
+          "Username already exists. Please login or try another username",
       });
     }
 
@@ -34,7 +34,7 @@ export const signupUser = asyncHandler(async (req, res, next) => {
       password: password,
     });
     await user.save();
-    return res.status(200);
+    return res.status(201).json({ message: "New user created" });
   } catch (err) {
     return next(err);
   }
