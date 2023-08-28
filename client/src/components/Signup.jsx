@@ -4,6 +4,7 @@ import axios from "axios";
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const signup = async (e) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-5/12 rounded-md bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-1">
+    <div className="w-3/12 rounded-md bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-1">
       <div className="flex flex-col h-full w-full p-5 bg-slate-300">
         <h1 className="self-center underline text-2xl font-bold decoration-pink-500">
           Sign Up
@@ -39,6 +40,7 @@ const Signup = () => {
             className="border-2 border-pink-600 rounded-xl p-1"
             placeholder="username"
             type="text"
+            required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -50,13 +52,27 @@ const Signup = () => {
             className="border-2 border-pink-600 rounded-xl p-1"
             placeholder="password"
             type="password"
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="mt-5 border-2 border-pink-500 rounded-xl w-3/12 hover:bg-pink-300 transition-all ease-in-out duration-300 bg-white">
+          <input
+            name="confirm-password"
+            className="border-2 border-pink-600 rounded-xl p-1"
+            placeholder="re-enter password"
+            type="password"
+            required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <button className="mt-8 border-2 border-pink-500 rounded-xl w-3/12 hover:bg-pink-300 transition-all ease-in-out duration-300 bg-white">
             Register
           </button>
         </form>
+        <div className="text-sm mt-5">
+          <div>Already a user?</div>
+          <a className="text-pink-500">Login</a>
+        </div>
       </div>
     </div>
   );
