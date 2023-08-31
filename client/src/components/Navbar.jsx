@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="border-b-[1px] border-gray-200 shadow-md">
         <div className="flex justify-between items-center my-5 mx-2 md:mx-40 md:my-5">
           <div className="font-bold text-md md:text-xl">
-            <span className="text-[#8b3dff]">Login</span> Authentication
+            <span className="text-[#8b3dff]">Login</span> Auth
           </div>
           <div className="flex gap-2 md:gap-8">
             <button
@@ -33,8 +33,10 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {showSignUp && <Signup setShowSignUp={setShowSignUp} />}
-      {showLogin && <Login setShowLogin={setShowLogin} />}
+      {showSignUp && (
+        <Signup showSignUp={showSignUp} setShowSignUp={setShowSignUp} />
+      )}
+      {showLogin && <Login showLogin={showLogin} setShowLogin={setShowLogin} />}
     </>
   );
 };
