@@ -2,6 +2,8 @@ import { useEffect, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 const Login = ({ showLogin, setShowLogin }) => {
+  const login = async (e) => {};
+
   return (
     <Transition appear show={showLogin} as={Fragment}>
       <Dialog
@@ -39,29 +41,30 @@ const Login = ({ showLogin, setShowLogin }) => {
                 >
                   Login
                 </Dialog.Title>
-                <div className="mt-2 flex flex-col gap-2">
-                  <label className="text-[15px]">Username</label>
-                  <input
-                    placeholder="Username"
-                    className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
-                  />
-                </div>
-                <div className="mt-2 flex flex-col gap-2">
-                  <label className="text-[15px]">Password</label>
-                  <input
-                    placeholder="Password"
-                    className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
-                  />
-                </div>
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-[#dfd0f5] px-4 py-2 text-sm font-medium text-[#8b3dff] hover:bg-[#d3baf7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
-                    onClick={(prev) => setShowLogin(!prev)}
-                  >
-                    Login
-                  </button>
-                </div>
+                <form action="" method="POST" onSubmit={login}>
+                  <div className="mt-2 flex flex-col gap-2">
+                    <label className="text-[15px]">Username</label>
+                    <input
+                      placeholder="Username"
+                      className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                    />
+                  </div>
+                  <div className="mt-2 flex flex-col gap-2">
+                    <label className="text-[15px]">Password</label>
+                    <input
+                      placeholder="Password"
+                      className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                    />
+                  </div>
+                  <div className="mt-4">
+                    <button
+                      type="submit"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-[#dfd0f5] px-4 py-2 text-sm font-medium text-[#8b3dff] hover:bg-[#d3baf7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                    >
+                      Login
+                    </button>
+                  </div>
+                </form>
               </Dialog.Panel>
             </Transition.Child>
           </div>

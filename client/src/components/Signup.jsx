@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import axios from "axios";
+import { Dialog, Transition } from "@headlessui/react";
 
 const Signup = ({ showSignUp, setShowSignUp }) => {
   const [username, setUsername] = useState("");
@@ -26,61 +27,94 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
   };
 
   return (
-    <div className="font-open-sans w-3/12 rounded-md bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-1">
-      <div className="flex flex-col h-full w-full p-5 bg-slate-300">
-        <h1 className="self-center underline text-2xl font-bold decoration-pink-500">
-          Sign Up
-        </h1>
-        <form
-          className="flex flex-col"
-          action=""
-          method="POST"
-          onSubmit={signup}
+    <Transition appear show={showSignUp} as={Fragment}>
+      <Dialog
+        as="div"
+        className="relative z-10 font-open-sans"
+        onClose={(prev) => setShowSignUp(prev)}
+      >
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
         >
-          <label className="font-semibold mt-5" for="username">
-            Username
-          </label>
-          <input
-            name="username"
-            className="border-2 border-pink-600 rounded-xl p-1"
-            placeholder="username"
-            type="text"
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <label className="font-semibold mt-5" for="password">
-            Password
-          </label>
-          <input
-            name="password"
-            className="border-2 border-pink-600 rounded-xl p-1"
-            placeholder="password"
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input
-            name="confirm-password"
-            className="border-2 border-pink-600 rounded-xl p-1 mt-5"
-            placeholder="re-enter password"
-            type="password"
-            required
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <button className="mt-8 border-2 border-pink-500 rounded-xl w-3/12 hover:bg-pink-300 transition-all ease-in-out duration-300 bg-white">
-            Register
-          </button>
-        </form>
-        {errMessage && <div>{errMessage}</div>}
-        <div className="text-sm mt-5">
-          <div>Already a user?</div>
-          <a className="text-pink-500">Login</a>
+          <div className="fixed inset-0 bg-black bg-opacity-25" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Title
+                  as="h3"
+                  className="text-xl font-semibold leading-6 text-[#8b3dff]"
+                >
+                  Sign Up
+                </Dialog.Title>
+                <form action="" method="POST" onSubmit={signup}>
+                  <div className="mt-2 flex flex-col gap-2">
+                    <label className="text-[15px]">Username</label>
+                    <input
+                      placeholder="Username"
+                      className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                      name="username"
+                      type="text"
+                      required
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                  </div>
+                  <div className="mt-2 flex flex-col gap-2">
+                    <label className="text-[15px]">Password</label>
+                    <input
+                      placeholder="Password"
+                      className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                      name="password"
+                      type="password"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <div className="mt-2 flex flex-col gap-2">
+                    <input
+                      placeholder="Re-enter Password"
+                      className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                      name="confirm-password"
+                      type="password"
+                      required
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                  </div>
+                  <div className="mt-4">
+                    <button
+                      type="submit"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-[#dfd0f5] px-4 py-2 text-sm font-medium text-[#8b3dff] hover:bg-[#d3baf7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                    >
+                      Sign up
+                    </button>
+                    {errMessage && <div>{errMessage}</div>}
+                  </div>
+                </form>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
         </div>
-      </div>
-    </div>
+      </Dialog>
+    </Transition>
   );
 };
 
