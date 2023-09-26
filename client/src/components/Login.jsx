@@ -1,8 +1,30 @@
-import { useEffect, Fragment } from "react";
+import { useEffect, Fragment, useState } from "react";
+import axios from "axios";
 import { Dialog, Transition } from "@headlessui/react";
 
 const Login = ({ showLogin, setShowLogin }) => {
-  const login = async (e) => {};
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errMessage, setErrMessage] = useState("");
+
+  const login = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("/api/log-in", { username, password }).then((res) => {
+        if (res.status === 200) {
+          // return a cookie for user in the db
+          console.log(`yo wassup`);
+          console.log(res);
+        }
+      });
+    } catch (err) {
+      if (err.response?.status === 409 || err.response?.status === 400) {
+        setErrMessage(err.response?.data?.message);
+      } else {
+        console.error(err);
+      }
+    }
+  };
 
   return (
     <Transition appear show={showLogin} as={Fragment}>
@@ -41,12 +63,17 @@ const Login = ({ showLogin, setShowLogin }) => {
                 >
                   Login
                 </Dialog.Title>
-                <form action="" method="POST" onSubmit={login}>
+                <form action="" method="POST" onSubmit={(e) => login(e)}>
                   <div className="mt-2 flex flex-col gap-2">
                     <label className="text-[15px]">Username</label>
                     <input
                       placeholder="Username"
                       className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                      name="username"
+                      type="text"
+                      required
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                     />
                   </div>
                   <div className="mt-2 flex flex-col gap-2">
@@ -54,6 +81,10 @@ const Login = ({ showLogin, setShowLogin }) => {
                     <input
                       placeholder="Password"
                       className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                      name="password"
+                      type="password"
+                      required={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                   <div className="mt-4">

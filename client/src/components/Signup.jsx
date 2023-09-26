@@ -63,7 +63,7 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
                 >
                   Sign Up
                 </Dialog.Title>
-                <form action="" method="POST" onSubmit={signup}>
+                <form action="" method="POST" onSubmit={(e) => signup(e)}>
                   <div className="mt-2 flex flex-col gap-2">
                     <label className="text-[15px]">Username</label>
                     <input
