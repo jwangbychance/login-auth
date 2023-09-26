@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 const checkPassword = async (passwordHash, password) => {
   try {
-    await bcrypt.compare(passwordHash, password);
+    return await bcrypt.compare(passwordHash, password);
   } catch (err) {
     throw err;
   }
@@ -18,7 +18,7 @@ const strategy = new LocalStrategy(async (username, password, done) => {
       return done(null, false, { message: "Incorrect username/password" });
     }
 
-    const match = checkPassword(user.password, password);
+    const match = await checkPassword(user.password, password);
 
     if (!match) {
       return done(null, false, { message: "Incorrect username/password" });
