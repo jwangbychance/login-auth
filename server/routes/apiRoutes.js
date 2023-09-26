@@ -1,9 +1,14 @@
 import express from "express";
-import { signupUser, loginUser } from "../controllers/userController.js";
+import {
+  userCheck,
+  signupUser,
+  loginUser,
+} from "../controllers/userController.js";
 import passport from "../passport/index.js";
 
 const router = express.Router();
 
+router.get("/user", userCheck);
 router.post("/sign-up", signupUser);
 router.post(
   "/log-in",

@@ -1,6 +1,11 @@
 import User from "../models/user.js";
 import asyncHandler from "express-async-handler";
 
+export const userCheck = asyncHandler(async (req, res) => {
+  console.log(req);
+  return res.json({ user: req.user?.username });
+});
+
 export const signupUser = asyncHandler(async (req, res, next) => {
   const { username, password } = req.body;
 
