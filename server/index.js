@@ -3,8 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import router from "./routes/apiRoutes.js";
-import passport from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
+import passport from "./passport/index.js";
 import session from "express-session";
 
 const mongoDB = process.env.MONGO_CONNECTION;
@@ -15,6 +14,7 @@ db.on("error", console.error.bind(console, "mongo connection error"));
 const app = express();
 const PORT = process.env.PORT;
 
+// Sessions
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -22,11 +22,16 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+// Passport
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
+
+// Routes
 app.use("/api", router);
 
 app.use((err, req, res, next) => {
@@ -34,6 +39,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something went wrong!");
 });
 
+// Starting server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
