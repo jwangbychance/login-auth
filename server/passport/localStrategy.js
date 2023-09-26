@@ -2,9 +2,9 @@ import User from "../models/user.js";
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcryptjs";
 
-const checkPassword = async (passwordHash, password) => {
+const checkPassword = async (password, passwordHash) => {
   try {
-    return await bcrypt.compare(passwordHash, password);
+    return await bcrypt.compare(password, passwordHash);
   } catch (err) {
     throw err;
   }
@@ -18,7 +18,7 @@ const strategy = new LocalStrategy(async (username, password, done) => {
       return done(null, false, { message: "Incorrect username/password" });
     }
 
-    const match = await checkPassword(user.password, password);
+    const match = await checkPassword(password, user.password);
 
     if (!match) {
       return done(null, false, { message: "Incorrect username/password" });
