@@ -1,10 +1,12 @@
 import { useState, useContext } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
+import Profile from "./Profile";
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   return (
     <>
@@ -13,30 +15,58 @@ const Navbar = () => {
           <div className="font-bold text-md md:text-xl">
             <span className="text-[#8b3dff]">Login</span> Auth
           </div>
-          <div className="flex gap-2 md:gap-8">
-            <button
-              onClick={() => {
-                setShowLogin((prev) => !prev);
-              }}
-              className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => {
-                setShowSignUp((prev) => !prev);
-              }}
-              className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm"
-            >
-              Sign up
-            </button>
-          </div>
+          {isLoggedIn ? (
+            <div className="flex gap-2 md:gap-8 relative">
+              <button
+                onClick={() => {
+                  setShowProfile((prev) => !prev);
+                }}
+                className="flex gap-3 text-[#8b3dff] font-semibold px-4 md:px-8 py-1 md:py-2 text-md"
+              >
+                Profile
+                <div className="w-5 h-5 self-center text-black">
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    ></path>
+                  </svg>
+                </div>
+              </button>
+              {showProfile && <Profile user={isLoggedIn} />}
+            </div>
+          ) : (
+            <div className="flex gap-2 md:gap-8">
+              <button
+                onClick={() => {
+                  setShowLogin((prev) => !prev);
+                }}
+                className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm"
+              >
+                Login
+              </button>
+              <Login showLogin={showLogin} setShowLogin={setShowLogin} />
+              <button
+                onClick={() => {
+                  setShowSignUp((prev) => !prev);
+                }}
+                className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm"
+              >
+                Sign up
+              </button>
+              <Signup showSignUp={showSignUp} setShowSignUp={setShowSignUp} />
+            </div>
+          )}
         </div>
       </div>
-      {showSignUp && (
-        <Signup showSignUp={showSignUp} setShowSignUp={setShowSignUp} />
-      )}
-      {showLogin && <Login showLogin={showLogin} setShowLogin={setShowLogin} />}
     </>
   );
 };

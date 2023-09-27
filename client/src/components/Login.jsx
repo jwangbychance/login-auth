@@ -13,7 +13,6 @@ const Login = ({ showLogin, setShowLogin }) => {
       await axios.post("/api/log-in", { username, password }).then((res) => {
         if (res.status === 200) {
           // return a cookie for user in the db
-          console.log(`yo wassup`);
           console.log(res);
         }
       });
