@@ -2,7 +2,6 @@ import User from "../models/user.js";
 import asyncHandler from "express-async-handler";
 
 export const userCheck = asyncHandler(async (req, res) => {
-  console.log(req);
   return res.json({ user: req.user?.username });
 });
 
@@ -50,4 +49,12 @@ export const loginUser = asyncHandler(async (req, res, next) => {
   }
 
   next();
+});
+
+export const logoutUser = asyncHandler(async (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+  });
 });
