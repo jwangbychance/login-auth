@@ -25,6 +25,6 @@ router.post(
   }
 );
 
-router.get("/log-out", logoutUser);
+router.post("/log-out", logoutUser);
 
 export default router;
