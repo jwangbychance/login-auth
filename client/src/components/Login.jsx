@@ -68,7 +68,7 @@ const Login = ({ showLogin, setShowLogin }) => {
                 >
                   Login
                   <button
-                    className="w-6 h-6 ml-auto text-black"
+                    className="w-6 h-6 ml-auto text-black hover:bg-gray-200 hover:rounded-full"
                     onClick={(prev) => setShowLogin(!prev)}
                   >
                     <svg
