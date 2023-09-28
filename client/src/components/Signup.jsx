@@ -68,9 +68,28 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="text-xl font-semibold leading-6 text-[#8b3dff]"
+                  className="flex text-xl font-semibold leading-6 text-[#8b3dff]"
                 >
                   Sign Up
+                  <button
+                    className="w-6 h-6 ml-auto text-black"
+                    onClick={(prev) => setShowSignUp(!prev)}
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
                 </Dialog.Title>
                 <form action="" method="POST" onSubmit={(e) => signup(e)}>
                   <div className="mt-2 flex flex-col gap-2">
