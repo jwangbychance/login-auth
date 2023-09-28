@@ -21,7 +21,7 @@ const Profile = ({ user }) => {
       </div>
       <button
         onClick={(e) => logout(e)}
-        className="text-white font-semibold bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm mt-2"
+        className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm mt-2"
       >
         Log out
       </button>
