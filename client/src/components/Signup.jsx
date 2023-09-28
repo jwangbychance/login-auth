@@ -23,7 +23,7 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
     try {
       await axios.post("/api/sign-up", { username, password }).then((res) => {
         if (res.status === 201 && window) {
-          setSuccessMessage("Success! Please proceed to login");
+          setSuccessMessage("Success! Please proceed to login.");
         }
       });
     } catch (err) {

@@ -21,10 +21,10 @@ const Navbar = ({ isLoggedIn }) => {
                 onClick={() => {
                   setShowProfile((prev) => !prev);
                 }}
-                className="flex gap-3 text-[#8b3dff] font-semibold px-4 md:px-8 py-1 md:py-2 text-md"
+                className="flex gap-3 text-[#8b3dff] font-semibold px-4 md:px-8 py-1 md:py-[6px] text-md"
               >
                 Profile
-                <div className="w-5 h-5 self-center text-gray-600">
+                <div className="w-4 h-4 self-center text-gray-600">
                   <svg
                     fill="none"
                     stroke="currentColor"
