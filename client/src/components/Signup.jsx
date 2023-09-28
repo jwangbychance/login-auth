@@ -8,8 +8,17 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
+  useEffect(() => {
+    setErrMessage("");
+  }, [showSignUp]);
+
   const signup = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setErrMessage("Please make sure both fields contain the same password");
+      return;
+    }
+
     try {
       await axios.post("/api/sign-up", { username, password }).then((res) => {
         if (res.status === 201 && window) {
@@ -106,7 +115,11 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
                     >
                       Sign up
                     </button>
-                    {errMessage && <div>{errMessage}</div>}
+                    {errMessage && (
+                      <div className="text-xs text-red-500 mt-3">
+                        {errMessage}
+                      </div>
+                    )}
                   </div>
                 </form>
               </Dialog.Panel>
