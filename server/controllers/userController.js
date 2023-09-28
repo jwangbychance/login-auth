@@ -11,7 +11,7 @@ export const signupUser = asyncHandler(async (req, res, next) => {
   if (!username || !password) {
     return res
       .status(400)
-      .json({ message: "Username & password are required" });
+      .json({ message: "Please enter a username and password." });
   }
 
   try {
@@ -20,7 +20,7 @@ export const signupUser = asyncHandler(async (req, res, next) => {
     if (existingUser) {
       return res.status(409).json({
         message:
-          "Username already exists. Please login or try another username",
+          "Username already exists. Please login or try another username.",
       });
     }
 
@@ -45,7 +45,7 @@ export const loginUser = asyncHandler(async (req, res, next) => {
   if (!username || !password) {
     return res
       .status(400)
-      .json({ message: "Username & password are required" });
+      .json({ message: "Please enter a username and password." });
   }
 
   next();
