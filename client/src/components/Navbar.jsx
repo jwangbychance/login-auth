@@ -24,7 +24,7 @@ const Navbar = ({ isLoggedIn }) => {
                 className="flex gap-3 text-[#8b3dff] font-semibold px-4 md:px-8 py-1 md:py-2 text-md"
               >
                 Profile
-                <div className="w-5 h-5 self-center text-black">
+                <div className="w-5 h-5 self-center text-gray-600">
                   <svg
                     fill="none"
                     stroke="currentColor"

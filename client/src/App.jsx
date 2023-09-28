@@ -6,9 +6,14 @@ function App() {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    axios.get("/api/user").then((res) => {
-      setUser(res.data.user);
-    });
+    axios
+      .get("/api/user")
+      .then((res) => {
+        setUser(res.data.user);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   return (

@@ -5,8 +5,7 @@ const Profile = ({ user }) => {
   const logout = async (e) => {
     e.preventDefault();
     try {
-      await axios.get("/api/log-out").then((res) => {
-        console.log(res);
+      await axios.post("/api/log-out").then((res) => {
         window.location.href = "/";
       });
     } catch (err) {
@@ -21,9 +20,7 @@ const Profile = ({ user }) => {
         {user}
       </div>
       <button
-        onClick={(e) => {
-          logout(e);
-        }}
+        onClick={(e) => logout(e)}
         className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm mt-2"
       >
         Log out
