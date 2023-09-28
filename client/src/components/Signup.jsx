@@ -15,14 +15,14 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
   const signup = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setErrMessage("Please make sure both fields contain the same password");
+      setErrMessage("Please make sure both fields contain the same password.");
       return;
     }
 
     try {
       await axios.post("/api/sign-up", { username, password }).then((res) => {
         if (res.status === 201 && window) {
-          window.location.href = "/profile";
+          window.location.href = "/";
           // or <Redirect to="/profile" /> if using react-router
         }
       });

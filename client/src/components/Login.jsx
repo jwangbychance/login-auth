@@ -7,18 +7,23 @@ const Login = ({ showLogin, setShowLogin }) => {
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
+  useEffect(() => {
+    setErrMessage("");
+  }, [showLogin]);
+
   const login = async (e) => {
     e.preventDefault();
     try {
       await axios.post("/api/log-in", { username, password }).then((res) => {
         if (res.status === 200) {
-          // return a cookie for user in the db
-          console.log(res);
+          window.location.href = "/";
         }
       });
     } catch (err) {
-      if (err.response?.status === 409 || err.response?.status === 400) {
-        setErrMessage(err.response?.data?.message);
+      if (err.response.status === 401) {
+        setErrMessage("Incorrect username or password. Please try again.");
+      } else if (err.response.status === 400) {
+        setErrMessage("Please enter a username and password.");
       } else {
         console.error(err);
       }
@@ -82,7 +87,7 @@ const Login = ({ showLogin, setShowLogin }) => {
                       className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
                       name="password"
                       type="password"
-                      required={password}
+                      required
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
@@ -93,6 +98,11 @@ const Login = ({ showLogin, setShowLogin }) => {
                     >
                       Login
                     </button>
+                    {errMessage && (
+                      <div className="text-xs text-red-500 mt-3">
+                        {errMessage}
+                      </div>
+                    )}
                   </div>
                 </form>
               </Dialog.Panel>

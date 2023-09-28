@@ -7,6 +7,7 @@ const Profile = ({ user }) => {
     try {
       await axios.get("/api/log-out").then((res) => {
         console.log(res);
+        window.location.href = "/";
       });
     } catch (err) {
       console.error(err);
