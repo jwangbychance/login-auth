@@ -99,7 +99,7 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
                   </div>
                   <div className="mt-2 flex flex-col gap-2">
                     <input
-                      placeholder="Re-enter Password"
+                      placeholder="Confirm Password"
                       className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
                       name="confirm-password"
                       type="password"
