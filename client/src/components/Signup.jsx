@@ -115,7 +115,7 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
                     >
                       Sign up
                     </button>
-                    {errMessage && (
+                    {errMessage && !successMessage && (
                       <div className="text-xs text-red-500 mt-3">
                         {errMessage}
                       </div>
