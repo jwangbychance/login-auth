@@ -7,6 +7,7 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     setErrMessage("");
@@ -22,8 +23,7 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
     try {
       await axios.post("/api/sign-up", { username, password }).then((res) => {
         if (res.status === 201 && window) {
-          window.location.href = "/";
-          // or <Redirect to="/profile" /> if using react-router
+          setSuccessMessage("Success! Please proceed to login");
         }
       });
     } catch (err) {
@@ -118,6 +118,11 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
                     {errMessage && (
                       <div className="text-xs text-red-500 mt-3">
                         {errMessage}
+                      </div>
+                    )}
+                    {successMessage && (
+                      <div className="text-xs text-green-600 mt-3">
+                        {successMessage}
                       </div>
                     )}
                   </div>

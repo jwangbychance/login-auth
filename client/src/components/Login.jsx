@@ -16,6 +16,7 @@ const Login = ({ showLogin, setShowLogin }) => {
     try {
       await axios.post("/api/log-in", { username, password }).then((res) => {
         if (res.status === 200) {
+          // TODO: <Redirect to="/" /> if using react-router
           window.location.href = "/";
         }
       });
