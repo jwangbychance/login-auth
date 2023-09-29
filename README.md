@@ -20,9 +20,29 @@ A `.env` file is required for both the `client` and `server` directories followi
 
 Once the repo is cloned, run the following command in both `client` and `server` to install the dependencies:
 
-```script
+```bash
 npm install
+# or
+npm i
 ```
+
+## Getting Started
+
+First, run the client:
+
+```bash
+npm run dev
+```
+
+And the server:
+
+```bash
+node index.js
+```
+
+Open `localhost` with your browser and appending the port number from the `.env` file.
+
+API routes can be accessed similarly with a different port number from the `.env` file.
 
 ## Built with
 
