@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Navbar from "./components/Navbar";
+import { getUser } from "./api/users";
 
 function App() {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    axios
-      .get("/api/user")
-      .then((res) => {
-        setUser(res.data.user);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const user = async () => {
+      const { user } = await getUser();
+      setUser(user);
+    };
+
+    user();
   }, []);
 
   return (

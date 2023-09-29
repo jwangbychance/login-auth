@@ -1,6 +1,6 @@
 import { useEffect, Fragment, useState } from "react";
-import axios from "axios";
 import { Dialog, Transition } from "@headlessui/react";
+import { loginUser } from "../api/users";
 
 const Login = ({ showLogin, setShowLogin }) => {
   const [username, setUsername] = useState("");
@@ -14,12 +14,11 @@ const Login = ({ showLogin, setShowLogin }) => {
   const login = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/log-in", { username, password }).then((res) => {
-        if (res.status === 200) {
-          // TODO: <Redirect to="/" /> if using react-router
-          window.location.href = "/";
-        }
-      });
+      const { status } = await loginUser(username, password);
+      if (status === 200) {
+        // TODO: <Redirect to="/" /> if using react-router
+        window.location.href = "/";
+      }
     } catch (err) {
       if (err.response.status === 401) {
         setErrMessage("Incorrect username or password. Please try again.");

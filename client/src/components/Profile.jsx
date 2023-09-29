@@ -1,13 +1,11 @@
 import useState from "react";
-import axios from "axios";
+import { logoutUser } from "../api/users";
 
 const Profile = ({ user }) => {
   const logout = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/log-out").then((res) => {
-        window.location.href = "/";
-      });
+      logoutUser();
     } catch (err) {
       console.error(err);
     }

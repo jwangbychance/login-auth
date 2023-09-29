@@ -1,6 +1,6 @@
 import { useEffect, useState, Fragment } from "react";
-import axios from "axios";
 import { Dialog, Transition } from "@headlessui/react";
+import { signupUser } from "../api/users";
 
 const Signup = ({ showSignUp, setShowSignUp }) => {
   const [username, setUsername] = useState("");
@@ -21,11 +21,10 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
     }
 
     try {
-      await axios.post("/api/sign-up", { username, password }).then((res) => {
-        if (res.status === 201 && window) {
-          setSuccessMessage("Success! Please proceed to login.");
-        }
-      });
+      const { status } = await signupUser(username, password);
+      if (status === 201 && window) {
+        setSuccessMessage("Success! Please proceed to login.");
+      }
     } catch (err) {
       if (err.response?.status === 409 || err.response?.status === 400) {
         setErrMessage(err.response?.data?.message);
