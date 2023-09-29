@@ -6,6 +6,7 @@ const Login = ({ showLogin, setShowLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
+  const [capsWarning, setCapsWarning] = useState(false);
 
   useEffect(() => {
     setErrMessage("");
@@ -27,6 +28,14 @@ const Login = ({ showLogin, setShowLogin }) => {
       } else {
         console.error(err);
       }
+    }
+  };
+
+  const onKeyDown = (keyEvent) => {
+    if (keyEvent.getModifierState("CapsLock")) {
+      setCapsWarning(true);
+    } else {
+      setCapsWarning(false);
     }
   };
 
@@ -108,6 +117,7 @@ const Login = ({ showLogin, setShowLogin }) => {
                       type="password"
                       required
                       onChange={(e) => setPassword(e.target.value)}
+                      onKeyDown={onKeyDown}
                     />
                   </div>
                   <div className="mt-4">
@@ -120,6 +130,11 @@ const Login = ({ showLogin, setShowLogin }) => {
                     {errMessage && (
                       <div className="text-xs text-red-500 mt-3">
                         {errMessage}
+                      </div>
+                    )}
+                    {capsWarning && (
+                      <div className="text-xs text-red-500 mt-3">
+                        Caps Lock is on!
                       </div>
                     )}
                   </div>

@@ -8,6 +8,7 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [capsWarning, setCapsWarning] = useState(false);
 
   useEffect(() => {
     setErrMessage("");
@@ -31,6 +32,14 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
       } else {
         console.error(err);
       }
+    }
+  };
+
+  const onKeyDown = (keyEvent) => {
+    if (keyEvent.getModifierState("CapsLock")) {
+      setCapsWarning(true);
+    } else {
+      setCapsWarning(false);
     }
   };
 
@@ -113,6 +122,7 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      onKeyDown={onKeyDown}
                     />
                   </div>
                   <div className="mt-2 flex flex-col gap-2">
@@ -124,6 +134,7 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
                       required
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
+                      onKeyDown={onKeyDown}
                     />
                   </div>
                   <div className="mt-4">
@@ -141,6 +152,11 @@ const Signup = ({ showSignUp, setShowSignUp }) => {
                     {successMessage && (
                       <div className="text-xs text-green-600 mt-3">
                         {successMessage}
+                      </div>
+                    )}
+                    {capsWarning && (
+                      <div className="text-xs text-red-500 mt-3">
+                        Caps Lock is on!
                       </div>
                     )}
                   </div>
