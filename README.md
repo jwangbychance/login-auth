@@ -24,12 +24,13 @@ Once the repo is cloned, run the following command in both `client` and `server`
 npm install
 ```
 
-## Stack
+## Built with
 
 - React
 - NodeJS
 - Express
 - MongoDB
+- Tailwind CSS
 
 ## Todos
 
