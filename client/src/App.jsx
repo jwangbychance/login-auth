@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import { getUser } from "./api/users";
+import UserContent from "./components/UserContent";
 
 function App() {
   const [user, setUser] = useState();
@@ -16,17 +17,13 @@ function App() {
 
   return (
     <div className="font-open-sans h-[100vh] w-full flex flex-col justify-center items-center">
-      <div className="self-start w-full absolute top-0">
+      <div className="self-start w-full">
         <Navbar isLoggedIn={user} />
       </div>
       {user ? (
-        <div className="w-full flex flex-col items-center gap-10 justify-center">
-          <div className="font-semibold text-xs md:text-base">
-            Welcome back {user}
-          </div>
-        </div>
+        <UserContent user={user} />
       ) : (
-        <div className="w-full flex flex-col items-center gap-10 justify-center">
+        <div className="h-full w-full flex flex-col items-center gap-10 justify-center">
           <div
             className="text-[#8b3dff] inline-block h-20 w-20 md:h-40 md:w-40 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
             role="status"
