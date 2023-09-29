@@ -30,3 +30,11 @@ npm install
 - NodeJS
 - Express
 - MongoDB
+
+## Todos
+
+- Refactor to TypeScript
+- Allow users to change their passwords
+- Users can create messages
+- Authorisation for admin users
+- More features to come... &#x1f914;
