@@ -1,6 +1,6 @@
 # login-auth
 
-Vite React + Express
+Vite React + Express.js
 
 Web application, built using the MERN stack using cookie sessions for authentication.
 
@@ -22,8 +22,6 @@ Once the repo is cloned, run the following command in both `client` and `server`
 
 ```bash
 npm install
-# or
-npm i
 ```
 
 ## Getting Started
@@ -37,7 +35,7 @@ npm run dev
 And the server:
 
 ```bash
-node index.js
+npm start
 ```
 
 Open `localhost` with your browser and appending the port number from the `.env` file.
