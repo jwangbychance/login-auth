@@ -1,8 +1,8 @@
-import User from "../models/user.js";
+import User from "../models/user";
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcryptjs";
 
-const checkPassword = async (password, passwordHash) => {
+const checkPassword = async (password:string, passwordHash:string) => {
   try {
     return await bcrypt.compare(password, passwordHash);
   } catch (err) {

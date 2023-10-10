@@ -1,8 +1,12 @@
 import passport from "passport";
-import strategy from "./localStrategy.js";
-import User from "../models/user.js";
+import strategy from "./localStrategy";
+import User from "../models/user";
 
-passport.serializeUser((user, done) => {
+type User = {
+  id?: number,
+}
+
+passport.serializeUser((user:User, done) => {
   done(null, user.id);
 });
 
