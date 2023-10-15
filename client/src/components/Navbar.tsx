@@ -3,7 +3,11 @@ import Signup from "./Signup";
 import Login from "./Login";
 import Profile from "./Profile";
 
-const Navbar = ({ isLoggedIn }) => {
+interface NavbarProps {
+  isLoggedIn?: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showProfile, setShowProfile] = useState(false);

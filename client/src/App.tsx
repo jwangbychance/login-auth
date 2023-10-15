@@ -4,12 +4,12 @@ import { getUser } from "./api/users";
 import UserContent from "./components/UserContent";
 
 function App() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     const user = async () => {
-      const { user } = await getUser();
-      setUser(user);
+      const { userDetails: user } = await getUser();
+      setUser(user.user);
     };
 
     user();

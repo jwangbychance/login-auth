@@ -1,8 +1,11 @@
 import React from "react";
 import MessageBox from "./MessageBox";
-import jokerImg from "../assets/joker_take_your_time.png";
 
-const UserContent = ({ user }) => {
+interface UserContentProps {
+  user: string;
+}
+
+const UserContent: React.FC<UserContentProps> = ({ user }) => {
   return (
     <div className="flex mt-5 px-5 w-full h-full">
       <div className="w-full">
@@ -15,7 +18,7 @@ const UserContent = ({ user }) => {
       </div>
       <div className="hidden md:flex ml-auto md:border h-fit border-gray-200 rounded-md p-5 w-3/12 md:flex-col justify-center">
         <img
-          src={jokerImg}
+          src="src/assets/joker_take_your_time.png"
           className="hidden md:block w-40 rounded-full overflow-hidden self-center"
         />
         <div className="hidden md:block text-sm mt-5 font-semibold">

@@ -1,4 +1,6 @@
-const messages = [
+import { IMessages } from "../interfaces/IMessage";
+
+const messages: IMessages[] = [
   {
     id: 1,
     username: "JohnSmitho",

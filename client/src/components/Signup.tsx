@@ -1,37 +1,46 @@
-import { useEffect, Fragment, useState } from "react";
+import React, { useEffect, useState, Fragment, FormEvent } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { loginUser } from "../api/users";
+import { signupUser } from "../api/users";
 
-const Login = ({ showLogin, setShowLogin }) => {
+interface SignupProps {
+  showSignUp: boolean;
+  setShowSignUp: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Signup: React.FC<SignupProps> = ({ showSignUp, setShowSignUp }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [capsWarning, setCapsWarning] = useState(false);
 
   useEffect(() => {
     setErrMessage("");
-  }, [showLogin]);
+  }, [showSignUp]);
 
-  const login = async (e) => {
+  const signup = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setErrMessage("Please make sure both fields contain the same password.");
+      return;
+    }
+
     try {
-      const { status } = await loginUser(username, password);
-      if (status === 200) {
-        // TODO: <Redirect to="/" /> if using react-router
-        window.location.href = "/";
+      const { status } = await signupUser(username, password);
+      if (status === 201 && window) {
+        setSuccessMessage("Success! Please proceed to login.");
       }
-    } catch (err) {
-      if (err.response.status === 401) {
-        setErrMessage("Incorrect username or password. Please try again.");
-      } else if (err.response.status === 400) {
-        setErrMessage("Please enter a username and password.");
+    } catch (err: any) {
+      if (err.response?.status === 409 || err.response?.status === 400) {
+        setErrMessage(err.response?.data?.message);
       } else {
         console.error(err);
       }
     }
   };
 
-  const onKeyDown = (keyEvent) => {
+  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (keyEvent) => {
     if (keyEvent.getModifierState("CapsLock")) {
       setCapsWarning(true);
     } else {
@@ -40,11 +49,11 @@ const Login = ({ showLogin, setShowLogin }) => {
   };
 
   return (
-    <Transition appear show={showLogin} as={Fragment}>
+    <Transition appear show={showSignUp} as={Fragment}>
       <Dialog
         as="div"
         className="relative z-10 font-open-sans"
-        onClose={(prev) => setShowLogin(prev)}
+        onClose={(prev) => setShowSignUp(prev)}
       >
         <Transition.Child
           as={Fragment}
@@ -74,10 +83,10 @@ const Login = ({ showLogin, setShowLogin }) => {
                   as="h3"
                   className="flex text-xl font-semibold leading-6 text-[#8b3dff]"
                 >
-                  Login
+                  Sign Up
                   <button
                     className="w-6 h-6 ml-auto text-black hover:bg-gray-200 hover:rounded-full"
-                    onClick={(prev) => setShowLogin(!prev)}
+                    onClick={(prev) => setShowSignUp(!prev)}
                   >
                     <svg
                       fill="none"
@@ -95,7 +104,7 @@ const Login = ({ showLogin, setShowLogin }) => {
                     </svg>
                   </button>
                 </Dialog.Title>
-                <form action="" method="POST" onSubmit={(e) => login(e)}>
+                <form action="" method="POST" onSubmit={(e) => signup(e)}>
                   <div className="mt-2 flex flex-col gap-2">
                     <label className="text-[15px]">Username</label>
                     <input
@@ -116,7 +125,20 @@ const Login = ({ showLogin, setShowLogin }) => {
                       name="password"
                       type="password"
                       required
+                      value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      onKeyDown={onKeyDown}
+                    />
+                  </div>
+                  <div className="mt-2 flex flex-col gap-2">
+                    <input
+                      placeholder="Confirm Password"
+                      className="text-[13px] border-[1px] border-gray-300 p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                      name="confirm-password"
+                      type="password"
+                      required
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                       onKeyDown={onKeyDown}
                     />
                   </div>
@@ -125,11 +147,16 @@ const Login = ({ showLogin, setShowLogin }) => {
                       type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-[#dfd0f5] px-4 py-2 text-sm font-medium text-[#8b3dff] hover:bg-[#d3baf7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
                     >
-                      Login
+                      Sign up
                     </button>
-                    {errMessage && (
+                    {errMessage && !successMessage && (
                       <div className="text-xs text-red-500 mt-3">
                         {errMessage}
+                      </div>
+                    )}
+                    {successMessage && (
+                      <div className="text-xs text-green-600 mt-3">
+                        {successMessage}
                       </div>
                     )}
                     {capsWarning && (
@@ -148,4 +175,4 @@ const Login = ({ showLogin, setShowLogin }) => {
   );
 };
 
-export default Login;
+export default Signup;

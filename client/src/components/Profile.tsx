@@ -1,8 +1,12 @@
 import useState from "react";
 import { logoutUser } from "../api/users";
 
-const Profile = ({ user }) => {
-  const logout = async (e) => {
+interface ProfileProps {
+  user: string;
+}
+
+const Profile: React.FC<ProfileProps> = ({ user }) => {
+  const logout = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     try {
       logoutUser();
