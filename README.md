@@ -52,7 +52,6 @@ API routes can be accessed similarly with a different port number from the `.env
 
 ## Todos
 
-- Refactor to TypeScript
 - Allow users to change their passwords
 - Users can create messages
 - Authorisation for admin users
