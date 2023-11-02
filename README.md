@@ -11,7 +11,7 @@ A MongoDB account is required to set up a Mongo database.
 Clone the repo
 
 ```script
-git clone git@github.com:jwangbychance/login-auth.git
+git clone https://github.com/jwangbychance/login-auth.git
 ```
 
 A `.env` file is required for both the `client` and `server` directories following the `.env.example`.
