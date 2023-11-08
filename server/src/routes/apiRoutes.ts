@@ -1,4 +1,4 @@
-import express, {Request, Response} from "express";
+import express, { Request, Response } from "express";
 import {
   userCheck,
   signupUser,
@@ -9,8 +9,8 @@ import passport from "../passport/index";
 
 interface IGetUserAuthInfoRequest extends Request {
   user: {
-    username: string,
-  }
+    username: string;
+  };
 }
 
 const router = express.Router();

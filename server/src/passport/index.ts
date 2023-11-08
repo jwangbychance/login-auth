@@ -3,10 +3,10 @@ import strategy from "./localStrategy";
 import User from "../models/user";
 
 type User = {
-  id?: number,
-}
+  id?: number;
+};
 
-passport.serializeUser((user:User, done) => {
+passport.serializeUser((user: User, done) => {
   done(null, user.id);
 });
 

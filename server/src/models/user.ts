@@ -5,6 +5,7 @@ import { IUser } from "../interfaces/IUser";
 const UserSchema = new Schema<IUser>({
   username: { type: String, required: true, maxLength: 50 },
   password: { type: String, required: true },
+  member: { type: Boolean, required: true },
 });
 
 UserSchema.pre("save", async function (next) {
