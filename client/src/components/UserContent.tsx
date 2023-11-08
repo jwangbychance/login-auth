@@ -1,8 +1,9 @@
 import React from "react";
 import MessageBox from "./MessageBox";
+import { IUser } from "../interfaces/IUser";
 
 interface UserContentProps {
-  user: string;
+  user: IUser;
 }
 
 const UserContent: React.FC<UserContentProps> = ({ user }) => {
@@ -10,7 +11,8 @@ const UserContent: React.FC<UserContentProps> = ({ user }) => {
     <div className="flex mt-5 px-5 w-full h-full">
       <div className="w-full">
         <div className="font-semibold mt-2">
-          Welcome back <span className="text-[#8b3dff]">{user}</span>! &#128526;
+          Welcome back <span className="text-[#8b3dff]">{user.username}</span>!
+          &#128526;
         </div>
         <div className="flex flex-col mt-5">
           <MessageBox />

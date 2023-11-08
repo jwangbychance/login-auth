@@ -1,7 +1,15 @@
 import axios from "axios";
-import { ISignupResponse, ILoginResponse, IGetUserResponse, IGetUserResponseBody } from "../interfaces/IStatusResponse";
+import {
+  ISignupResponse,
+  ILoginResponse,
+  IGetUserResponse,
+  IGetUserResponseBody,
+} from "../interfaces/IStatusResponse";
 
-export const signupUser = async (username: string, password: string): Promise<ISignupResponse> => {
+export const signupUser = async (
+  username: string,
+  password: string
+): Promise<ISignupResponse> => {
   try {
     const { status } = await axios.post<string>("/api/sign-up", {
       username,
@@ -13,7 +21,10 @@ export const signupUser = async (username: string, password: string): Promise<IS
   }
 };
 
-export const loginUser = async (username: string, password: string): Promise<ILoginResponse> => {
+export const loginUser = async (
+  username: string,
+  password: string
+): Promise<ILoginResponse> => {
   try {
     const { status } = await axios.post<string>("/api/log-in", {
       username,

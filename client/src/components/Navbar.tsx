@@ -2,12 +2,13 @@ import { useState, useContext } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
 import Profile from "./Profile";
+import { IUser } from "../interfaces/IUser";
 
 interface NavbarProps {
-  isLoggedIn?: string;
+  user?: IUser;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
+const Navbar: React.FC<NavbarProps> = ({ user }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
@@ -19,7 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           <div className="font-bold text-md md:text-xl">
             <span className="text-[#8b3dff]">Login</span> Auth
           </div>
-          {isLoggedIn ? (
+          {user?.username ? (
             <div className="flex relative items-center">
               <button
                 onClick={() => {
@@ -61,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
                   </svg>
                 </div>
               </button>
-              {showProfile && <Profile user={isLoggedIn} />}
+              {showProfile && <Profile user={user} />}
             </div>
           ) : (
             <div className="flex gap-2 md:gap-8">

@@ -1,8 +1,9 @@
 import useState from "react";
 import { logoutUser } from "../api/users";
+import { IUser } from "../interfaces/IUser";
 
 interface ProfileProps {
-  user: string;
+  user: IUser;
 }
 
 const Profile: React.FC<ProfileProps> = ({ user }) => {
@@ -19,7 +20,7 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
     <div className="flex flex-col p-3 bg-white text-sm shadow-md absolute right-0 top-10 w-[200px] border-gray-100 border">
       <div className="text-gray-600 mb-2">Logged in as:</div>
       <div className="text-[#8b3dff] font-semibold border-b-[1px] border-gray-300 pb-2">
-        {user}
+        {user.username}
       </div>
       <button
         onClick={(e) => logout(e)}

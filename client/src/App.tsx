@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import { getUser } from "./api/users";
 import UserContent from "./components/UserContent";
+import { IUser } from "./interfaces/IUser";
 
 function App() {
-  const [user, setUser] = useState<string | undefined>(undefined);
+  const [user, setUser] = useState<IUser>();
 
   useEffect(() => {
     const user = async () => {
       const { userDetails: user } = await getUser();
-      setUser(user.user);
+      setUser({ username: user.username, member: user.member });
     };
 
     user();
@@ -18,9 +19,9 @@ function App() {
   return (
     <div className="font-open-sans h-[100vh] w-full flex flex-col justify-center items-center">
       <div className="self-start w-full">
-        <Navbar isLoggedIn={user} />
+        <Navbar user={user} />
       </div>
-      {user ? (
+      {user?.username ? (
         <UserContent user={user} />
       ) : (
         <div className="h-full w-full flex flex-col items-center gap-10 justify-center">

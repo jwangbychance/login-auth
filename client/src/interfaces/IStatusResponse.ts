@@ -12,12 +12,13 @@ export interface IGetUserResponse {
 }
 
 export interface IGetUserResponseBody {
-  user: string;
+  username: string;
+  member: boolean;
 }
 
 export interface Response {
   response: {
     status: number;
     data: string;
-  }
+  };
 }
