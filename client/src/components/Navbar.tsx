@@ -26,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
             <div className="flex relative items-center">
               {!user?.member && (
                 <button
-                  className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 py-1 md:py-2 text-sm"
+                  className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 py-1 md:py-2 text-xs md:text-sm"
                   onClick={() => {
                     setShowMemberCard((prev) => !prev);
                   }}
