@@ -16,11 +16,23 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
     }
   };
 
+  const memberStatus = (memberStatus: boolean) => {
+    if (!memberStatus) {
+      return "Guest";
+    } else {
+      return "Member";
+    }
+  };
+
   return (
     <div className="flex flex-col p-3 bg-white text-sm shadow-md absolute right-0 top-10 w-[200px] border-gray-100 border">
       <div className="text-gray-600 mb-2">Logged in as:</div>
       <div className="text-[#8b3dff] font-semibold border-b-[1px] border-gray-300 pb-2">
         {user.username}
+      </div>
+      <div className="text-gray-600 my-2">Member status: </div>
+      <div className="text-[#8b3dff] font-semibold border-b-[1px] border-gray-300 pb-2">
+        {memberStatus(user.member)}
       </div>
       <button
         onClick={(e) => logout(e)}
