@@ -4,6 +4,7 @@ import {
   signupUser,
   loginUser,
   logoutUser,
+  becomeMember,
 } from "../controllers/userController";
 import passport from "../passport/index";
 
@@ -38,5 +39,7 @@ router.post(
 );
 
 router.post("/log-out", logoutUser);
+
+router.put("/become-member", becomeMember);
 
 export default router;

@@ -2,6 +2,7 @@ import User from "../models/user";
 import asyncHandler from "express-async-handler";
 import { Request, Response, NextFunction } from "express";
 import { IUser } from "../interfaces/IUser";
+import "dotenv/config";
 
 export const userCheck = asyncHandler(async (req: Request, res: Response) => {
   const user = req.user as IUser | undefined;
@@ -68,4 +69,26 @@ export const logoutUser = asyncHandler(async (req, res, next) => {
     }
     res.status(200).json({ message: "Logged out successfully" });
   });
+});
+
+export const becomeMember = asyncHandler(async (req, res, next) => {
+  const { username, memberKey } = req.body;
+
+  try {
+    const user = await User.findOne({ username });
+
+    if (user) {
+      if (memberKey === process.env.MEMBER_KEY) {
+        await user.updateOne({ member: true });
+        res.status(200).json({ message: "Successfully joined as a member" });
+      } else {
+        res
+          .status(403)
+          .json({ message: "Please enter the correct member key" });
+      }
+    }
+  } catch (err: unknown) {
+    console.error(err);
+    return next(err);
+  }
 });
