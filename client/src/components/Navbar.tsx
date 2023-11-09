@@ -26,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
             <div className="flex relative items-center">
               {!user?.member && (
                 <button
-                  className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 py-1 md:py-2 text-xs md:text-sm"
+                  className="transition-all duration-300 font-semibold text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 py-1 md:py-2 text-xs md:text-sm"
                   onClick={() => {
                     setShowMemberCard((prev) => !prev);
                   }}
@@ -81,22 +81,22 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
             <div className="flex gap-2 md:gap-8">
               <button
                 onClick={() => {
-                  setShowLogin((prev) => !prev);
-                }}
-                className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm"
-              >
-                Login
-              </button>
-              <Login showLogin={showLogin} setShowLogin={setShowLogin} />
-              <button
-                onClick={() => {
                   setShowSignUp((prev) => !prev);
                 }}
-                className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm"
+                className="font-semibold transition-all duration-300 text-black bg-[#40576D12] hover:bg-[#394C6026] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm"
               >
                 Sign up
               </button>
               <Signup showSignUp={showSignUp} setShowSignUp={setShowSignUp} />
+              <button
+                onClick={() => {
+                  setShowLogin((prev) => !prev);
+                }}
+                className="font-semibold transition-all duration-300 text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm"
+              >
+                Login
+              </button>
+              <Login showLogin={showLogin} setShowLogin={setShowLogin} />
             </div>
           )}
         </div>
