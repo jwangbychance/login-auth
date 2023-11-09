@@ -22,3 +22,7 @@ export interface Response {
     data: string;
   };
 }
+
+export interface IMemberResponse {
+  status: number;
+}

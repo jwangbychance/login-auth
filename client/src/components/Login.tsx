@@ -36,7 +36,9 @@ const Login: React.FC<LoginProps> = ({ showLogin, setShowLogin }) => {
     }
   };
 
-  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (keyEvent) => {
+  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (
+    keyEvent
+  ) => {
     if (keyEvent.getModifierState("CapsLock")) {
       setCapsWarning(true);
     } else {

@@ -4,6 +4,7 @@ import {
   ILoginResponse,
   IGetUserResponse,
   IGetUserResponseBody,
+  IMemberResponse,
 } from "../interfaces/IStatusResponse";
 
 export const signupUser = async (
@@ -50,6 +51,21 @@ export const logoutUser = async (): Promise<void> => {
     await axios.post("/api/log-out").then((res) => {
       window.location.href = "/";
     });
+  } catch (err: unknown) {
+    throw err;
+  }
+};
+
+export const joinMemberSociety = async (
+  username: string,
+  memberKey: string
+): Promise<IMemberResponse> => {
+  try {
+    const { status } = await axios.put("/api/become-member", {
+      username,
+      memberKey,
+    });
+    return { status: status };
   } catch (err: unknown) {
     throw err;
   }

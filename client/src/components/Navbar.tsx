@@ -3,6 +3,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import Profile from "./Profile";
 import { IUser } from "../interfaces/IUser";
+import MemberCard from "./MemberCard";
 
 interface NavbarProps {
   user?: IUser;
@@ -12,6 +13,7 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const [showMemberCard, setShowMemberCard] = useState(false);
 
   return (
     <>
@@ -22,6 +24,17 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
           </div>
           {user?.username ? (
             <div className="flex relative items-center">
+              {!user?.member && (
+                <button
+                  className="text-white bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 py-1 md:py-2 text-sm"
+                  onClick={() => {
+                    setShowMemberCard((prev) => !prev);
+                  }}
+                >
+                  Become a member!
+                </button>
+              )}
+              {showMemberCard && <MemberCard username={user.username} />}
               <button
                 onClick={() => {
                   setShowProfile((prev) => !prev);
