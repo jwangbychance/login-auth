@@ -7,6 +7,7 @@ import {
   becomeMember,
 } from "../controllers/userController";
 import passport from "../passport/index";
+import { createMessage, viewMessages } from "../controllers/messageController";
 
 interface IGetUserAuthInfoRequest extends Request {
   user: {
@@ -41,5 +42,9 @@ router.post(
 router.post("/log-out", logoutUser);
 
 router.put("/become-member", becomeMember);
+
+router.post("/create-message", createMessage);
+
+router.get("/view-messages", viewMessages);
 
 export default router;

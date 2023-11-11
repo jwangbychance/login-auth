@@ -62,33 +62,37 @@ export const loginUser = asyncHandler(
   }
 );
 
-export const logoutUser = asyncHandler(async (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
+export const logoutUser = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    req.logout((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.status(200).json({ message: "Logged out successfully" });
+    });
+  }
+);
+
+export const becomeMember = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { username, memberKey } = req.body;
+
+    try {
+      const user = await User.findOne({ username });
+
+      if (user) {
+        if (memberKey === process.env.MEMBER_KEY) {
+          await user.updateOne({ member: true });
+          res.status(200).json({ message: "Successfully joined as a member" });
+        } else {
+          res
+            .status(403)
+            .json({ message: "Please enter the correct member key" });
+        }
+      }
+    } catch (err: unknown) {
+      console.error(err);
       return next(err);
     }
-    res.status(200).json({ message: "Logged out successfully" });
-  });
-});
-
-export const becomeMember = asyncHandler(async (req, res, next) => {
-  const { username, memberKey } = req.body;
-
-  try {
-    const user = await User.findOne({ username });
-
-    if (user) {
-      if (memberKey === process.env.MEMBER_KEY) {
-        await user.updateOne({ member: true });
-        res.status(200).json({ message: "Successfully joined as a member" });
-      } else {
-        res
-          .status(403)
-          .json({ message: "Please enter the correct member key" });
-      }
-    }
-  } catch (err: unknown) {
-    console.error(err);
-    return next(err);
   }
-});
+);
