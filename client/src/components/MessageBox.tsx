@@ -28,7 +28,7 @@ const MessageContent: React.FC<MessageContentProps> = ({
           <div className="flex flex-row items-center ml-5 h-full space-x-5 animate-pulse">
             <div className="flex flex-col space-y-3 w-full">
               <div className="h-6 bg-gray-300 rounded-md w-5/12 "></div>
-              <div className="w-24 h-6 bg-gray-300 rounded-md w-10/12 "></div>
+              <div className="h-6 bg-gray-300 rounded-md w-10/12 "></div>
             </div>
           </div>
         </div>

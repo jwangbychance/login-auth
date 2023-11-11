@@ -1,3 +1,5 @@
+import { IMessages } from "./IMessage";
+
 export interface ISignupResponse {
   status: number;
 }
@@ -25,4 +27,13 @@ export interface Response {
 
 export interface IMemberResponse {
   status: number;
+}
+
+export interface ICreateMessageResponse {
+  status: number;
+}
+
+export interface IGetMessagesResponse {
+  status: number;
+  messages: IMessages[];
 }
