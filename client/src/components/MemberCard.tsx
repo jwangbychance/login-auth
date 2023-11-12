@@ -30,7 +30,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ username }) => {
   };
 
   return (
-    <div className="flex flex-col p-3 bg-white text-sm shadow-md absolute -left-5 top-10 w-[200px] border-gray-100 border">
+    <div className="z-10 flex flex-col p-3 bg-white text-sm shadow-md absolute -left-5 top-10 w-[200px] border-gray-100 border">
       <div className="mt-2 flex flex-col gap-2">
         <label className="text-gray-600">Enter secret member key:</label>
         <input

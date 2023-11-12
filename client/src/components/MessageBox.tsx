@@ -65,7 +65,11 @@ const MessageBox: React.FC<MessageBoxProps> = ({ memberStatus }) => {
     const getMessages = async () => {
       const { data } = await viewMessages();
 
-      setMessages(data.messages);
+      const sortedMessages = data.messages.sort((a, b) =>
+        a.date < b.date ? 1 : -1
+      );
+
+      setMessages(sortedMessages);
     };
 
     getMessages();

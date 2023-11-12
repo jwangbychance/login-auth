@@ -25,7 +25,7 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
   };
 
   return (
-    <div className="flex flex-col p-3 bg-white text-sm shadow-md absolute right-0 top-10 w-[200px] border-gray-100 border">
+    <div className=" z-10 flex flex-col p-3 bg-white text-sm shadow-md absolute right-0 top-10 w-[200px] border-gray-100 border">
       <div className="text-gray-600 mb-2">Logged in as:</div>
       <div className="text-[#8b3dff] font-semibold border-b-[1px] border-gray-300 pb-2">
         {user.username}
