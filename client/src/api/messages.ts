@@ -8,7 +8,7 @@ import { IMessages } from "../interfaces/IMessage";
 export const createMessage = async (
   username: string | undefined,
   content: string,
-  date: Date
+  date: string
 ): Promise<ICreateMessageResponse> => {
   try {
     const { status } = await axios.post<string>("/api/create-message", {
@@ -24,11 +24,10 @@ export const createMessage = async (
 
 export const viewMessages = async (): Promise<IGetMessagesResponse> => {
   try {
-    const { status, messages } = await axios.get<
-      IMessages[],
-      IGetMessagesResponse
-    >("/api/view-messages");
-    return { status: status, messages: messages };
+    const { status, data } = await axios.get<IMessages[], IGetMessagesResponse>(
+      "/api/view-messages"
+    );
+    return { status: status, data: data };
   } catch (err: unknown) {
     throw err;
   }

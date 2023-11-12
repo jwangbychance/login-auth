@@ -14,13 +14,17 @@ const CreateMessage: React.FC<CreateMessageProps> = ({
   username,
 }) => {
   const [content, setContent] = useState("");
-  const date = new Date();
+  const date = new Date().toString();
+
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    writeMessage(e);
+    setShowCreateMessage((prev) => !prev);
+  };
 
   const writeMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const { status } = await createMessage(username, content, date);
-      console.log(status);
     } catch (err: unknown) {
       console.error(err);
     }
@@ -82,7 +86,11 @@ const CreateMessage: React.FC<CreateMessageProps> = ({
                     </svg>
                   </button>
                 </Dialog.Title>
-                <form action="" method="POST" onSubmit={(e) => writeMessage(e)}>
+                <form
+                  action=""
+                  method="POST"
+                  onSubmit={(e) => handleFormSubmit(e)}
+                >
                   <div className="mt-2 flex flex-col gap-2">
                     <textarea
                       placeholder="Write your message..."
@@ -97,7 +105,6 @@ const CreateMessage: React.FC<CreateMessageProps> = ({
                     <button
                       type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-[#dfd0f5] px-4 py-2 text-sm font-medium text-[#8b3dff] hover:bg-[#d3baf7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
-                      onClick={(prev) => setShowCreateMessage(!prev)}
                     >
                       Create
                     </button>

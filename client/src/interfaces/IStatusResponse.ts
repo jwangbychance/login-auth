@@ -35,5 +35,7 @@ export interface ICreateMessageResponse {
 
 export interface IGetMessagesResponse {
   status: number;
-  messages: IMessages[];
+  data: {
+    messages: IMessages[];
+  };
 }
