@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MessageBox from "./MessageBox";
 import { IUser } from "../interfaces/IUser";
 import CreateMessage from "./CreateMessage";
+import SideProfile from "./SideProfile";
 
 interface UserContentProps {
   user: IUser;
@@ -45,14 +46,8 @@ const UserContent: React.FC<UserContentProps> = ({ user }) => {
           <MessageBox memberStatus={user.member} />
         </div>
       </div>
-      <div className="hidden md:flex ml-auto md:border h-fit border-gray-200 rounded-md p-5 w-3/12 shadow-md md:flex-col justify-center">
-        <img
-          src="src/assets/joker_take_your_time.png"
-          className="hidden md:block w-40 rounded-full overflow-hidden self-center"
-        />
-        <div className="hidden md:block text-sm mt-5 font-semibold">
-          Status: <span className="text-green-600">Online</span>
-        </div>
+      <div className="sticky top-0 min-w-[300px] hidden md:flex ml-auto md:border h-fit border-gray-200 rounded-md p-5 w-3/12 shadow-md md:flex-col justify-center relative">
+        <SideProfile username={user.username} />
       </div>
     </div>
   );
