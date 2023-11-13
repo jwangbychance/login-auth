@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IMessages } from "../interfaces/IMessage";
 import { viewMessages } from "../api/messages";
+import ReactPaginate from "react-paginate";
 
 interface MessageBoxProps {
   memberStatus: boolean;
@@ -60,6 +61,24 @@ const MessageContent: React.FC<MessageContentProps> = ({
 
 const MessageBox: React.FC<MessageBoxProps> = ({ memberStatus }) => {
   const [messages, setMessages] = useState<IMessages[]>([]);
+  const [messageOffset, setMessageOffset] = useState(0);
+  const messagesPerPage = 10;
+  const endOffset = messageOffset + messagesPerPage;
+  const currentMessages = messages.slice(messageOffset, endOffset);
+  const pageCount = Math.ceil(messages.length / messagesPerPage);
+  const scrollTopRef = useRef<HTMLDivElement>(null);
+
+  const handlePageClick = (e: any) => {
+    const newOffset = (e.selected * messagesPerPage) % messages.length;
+    setMessageOffset(newOffset);
+    scrollToTop();
+  };
+
+  const scrollToTop = () => {
+    if (scrollTopRef.current !== null) {
+      scrollTopRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     const getMessages = async () => {
@@ -75,9 +94,12 @@ const MessageBox: React.FC<MessageBoxProps> = ({ memberStatus }) => {
     getMessages();
   }, [messages]);
 
+  useEffect(() => {}, [messageOffset]);
+
   return (
     <>
-      {messages.map(({ id, username, content, date }) => (
+      <div ref={scrollTopRef} />
+      {currentMessages.map(({ id, username, content, date }) => (
         <div key={id}>
           <MessageContent
             username={username}
@@ -87,6 +109,21 @@ const MessageBox: React.FC<MessageBoxProps> = ({ memberStatus }) => {
           />
         </div>
       ))}
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="<"
+        renderOnZeroPageCount={null}
+        previousLinkClassName="text-[#8b3dff] rounded-full border border-[#8b3dff] px-[6.5px]"
+        nextLinkClassName="text-[#8b3dff] rounded-full border border-[#8b3dff] px-[6.5px]"
+        disabledLinkClassName="text-gray-400"
+        activeLinkClassName="text-[#8b3dff] font-bold"
+        className="flex gap-5 pb-8"
+        pageClassName="border border-[#8b3dff] rounded-full px-[7px] flex items-center text-xs"
+      />
     </>
   );
 };
