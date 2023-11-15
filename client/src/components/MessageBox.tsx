@@ -94,8 +94,6 @@ const MessageBox: React.FC<MessageBoxProps> = ({ memberStatus }) => {
     getMessages();
   }, [messages]);
 
-  useEffect(() => {}, [messageOffset]);
-
   return (
     <>
       <div ref={scrollTopRef} />
