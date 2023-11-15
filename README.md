@@ -66,8 +66,8 @@ Check the diagram flow on [Draw.io](https://drive.google.com/file/d/1KpuT38paCEE
 
 ## Built with
 
-- React
-- NodeJS
-- Express
-- MongoDB
-- Tailwind CSS
+- [React](https://react.dev/) - A JavaScript library for building user interfaces.
+- [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js.
+- [MongoDB](https://www.mongodb.com/) - NoSQL database program.
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom user interfaces.
