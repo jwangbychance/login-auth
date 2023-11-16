@@ -9,8 +9,8 @@ describe("Login", () => {
     const { queryAllByText } = render(
       <Login showLogin={true} setShowLogin={setShowLogin} />
     );
-    expect(queryAllByText("username")).not.toBeNull();
-    expect(queryAllByText("password")).not.toBeNull();
+    expect(queryAllByText("Username")).not.toBeNull();
+    expect(queryAllByText("Password")).not.toBeNull();
   });
 
   it("should update the component state when the username changes", () => {

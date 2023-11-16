@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { joinMemberSociety } from "../api/users/users";
+import { joinMemberSociety } from "../../api/users/users";
 
 interface MemberCardProps {
   username: string;
@@ -41,11 +41,13 @@ const MemberCard: React.FC<MemberCardProps> = ({ username }) => {
           required
           value={memberKey}
           onChange={(e) => setMemberKey(e.target.value)}
+          data-testid="member-key-input"
         />
       </div>
       <button
         onClick={(e) => becomeMember(e)}
         className="text-white transition-all duration-300 bg-[#8b3dff] hover:bg-[#690af5] rounded-md px-4 md:px-8 py-1 md:py-2 text-sm mt-2"
+        data-testid="join-member-btn"
       >
         Join the society!
       </button>

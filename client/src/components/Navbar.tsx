@@ -3,7 +3,7 @@ import Signup from "./Signup";
 import Login from "./Login/Login";
 import Profile from "./Profile";
 import { IUser } from "../interfaces/IUser";
-import MemberCard from "./MemberCard";
+import MemberCard from "./MemberCard/MemberCard";
 
 interface NavbarProps {
   user?: IUser;
