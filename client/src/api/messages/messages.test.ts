@@ -23,4 +23,18 @@ describe("messages api call tests", async () => {
       });
     });
   });
+
+  describe("view messages", () => {
+    const axiosGetSpy = vi.spyOn(axios, "get");
+
+    it("should view all messages", async () => {
+      await viewMessages();
+      expect(axiosGetSpy).toHaveBeenCalledWith("/api/view-messages");
+    });
+
+    it("should return status", async () => {
+      const { status } = await viewMessages();
+      expect(status).toEqual(200);
+    });
+  });
 });

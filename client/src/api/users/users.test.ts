@@ -49,13 +49,12 @@ describe("users api call tests", async () => {
 
   describe("user joins member society", () => {
     const axiosPutSpy = vi.spyOn(axios, "put");
-    const memberKey = process.env.MEMBER_KEY!;
 
     it("should update user to member", async () => {
-      await joinMemberSociety("username", memberKey);
+      await joinMemberSociety("username", "some-member-key");
       expect(axiosPutSpy).toHaveBeenCalledWith("/api/become-member", {
         username: "username",
-        memberKey: memberKey,
+        memberKey: "some-member-key",
       });
     });
   });
