@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { joinMemberSociety } from "../api/users";
+import { joinMemberSociety } from "../api/users/users";
 
 interface MemberCardProps {
   username: string;

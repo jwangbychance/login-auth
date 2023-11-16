@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IMessages } from "../interfaces/IMessage";
-import { viewMessages } from "../api/messages";
+import { viewMessages } from "../api/messages/messages";
 import ReactPaginate from "react-paginate";
 
 interface MessageBoxProps {

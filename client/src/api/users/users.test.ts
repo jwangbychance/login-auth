@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test, vi, it } from "vitest";
-import { signupUser, loginUser, getUser, joinMemberSociety } from "../users";
+import { signupUser, loginUser, getUser, joinMemberSociety } from "./users";
 import axios from "axios";
 import "dotenv/config.js";
 

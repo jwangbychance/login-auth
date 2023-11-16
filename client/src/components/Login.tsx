@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment, useState, FormEvent } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { loginUser } from "../api/users";
+import { loginUser } from "../api/users/users";
 
 interface LoginProps {
   showLogin: boolean;

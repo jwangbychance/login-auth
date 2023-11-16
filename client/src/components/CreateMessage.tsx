@@ -1,6 +1,6 @@
 import React, { FormEvent, Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { createMessage } from "../api/messages";
+import { createMessage } from "../api/messages/messages";
 
 interface CreateMessageProps {
   showCreateMessage: boolean;

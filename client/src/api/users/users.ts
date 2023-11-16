@@ -5,7 +5,7 @@ import {
   IGetUserResponse,
   IGetUserResponseBody,
   IMemberResponse,
-} from "../interfaces/IStatusResponse";
+} from "../../interfaces/IStatusResponse";
 
 export const signupUser = async (
   username: string,

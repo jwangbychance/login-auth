@@ -1,5 +1,5 @@
 import useState from "react";
-import { logoutUser } from "../api/users";
+import { logoutUser } from "../api/users/users";
 import { IUser } from "../interfaces/IUser";
 
 interface ProfileProps {

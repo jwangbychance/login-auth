@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
-import { getUser } from "./api/users";
+import { getUser } from "./api/users/users";
 import UserContent from "./components/UserContent";
 import { IUser } from "./interfaces/IUser";
 

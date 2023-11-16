@@ -2,8 +2,8 @@ import axios from "axios";
 import {
   ICreateMessageResponse,
   IGetMessagesResponse,
-} from "../interfaces/IStatusResponse";
-import { IMessages } from "../interfaces/IMessage";
+} from "../../interfaces/IStatusResponse";
+import { IMessages } from "../../interfaces/IMessage";
 
 export const createMessage = async (
   username: string | undefined,

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test, vi, it } from "vitest";
-import { createMessage, viewMessages } from "../messages";
+import { createMessage, viewMessages } from "./messages";
 import axios from "axios";
 
 describe("messages api call tests", async () => {

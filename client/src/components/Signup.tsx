@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment, FormEvent } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { signupUser } from "../api/users";
+import { signupUser } from "../api/users/users";
 
 interface SignupProps {
   showSignUp: boolean;
@@ -40,7 +40,9 @@ const Signup: React.FC<SignupProps> = ({ showSignUp, setShowSignUp }) => {
     }
   };
 
-  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (keyEvent) => {
+  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (
+    keyEvent
+  ) => {
     if (keyEvent.getModifierState("CapsLock")) {
       setCapsWarning(true);
     } else {
