@@ -64,6 +64,18 @@ API routes can be accessed similarly with a different port number from the `.env
 
 Check the diagram flow on [Draw.io](https://drive.google.com/file/d/1KpuT38paCEEApsCH4Xb3XWCDRhAqzS1F/view) to see the intended usage of the project.
 
+## Testing Framework
+
+This project uses [Vitest](https://vitest.dev/) for unit testing.
+
+## Running Unit Tests
+
+To run the unit tests, execute the following command in your terminal:
+
+```bash
+npm test
+```
+
 ## Built with
 
 - [React](https://react.dev/) - A JavaScript library for building user interfaces.
