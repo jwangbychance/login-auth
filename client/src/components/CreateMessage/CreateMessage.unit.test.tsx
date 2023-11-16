@@ -1,6 +1,6 @@
 import { describe, vi, it, expect } from "vitest";
 import CreateMessage from "./CreateMessage";
-import { fireEvent, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 describe("CreateMessage", () => {
   const setShowCreateMessage = vi.fn();

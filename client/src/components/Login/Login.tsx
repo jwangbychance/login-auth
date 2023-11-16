@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment, useState, FormEvent } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { loginUser } from "../api/users/users";
+import { loginUser } from "../../api/users/users";
 
 interface LoginProps {
   showLogin: boolean;
@@ -113,6 +113,7 @@ const Login: React.FC<LoginProps> = ({ showLogin, setShowLogin }) => {
                       required
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
+                      data-testid="username-input"
                     />
                   </div>
                   <div className="mt-2 flex flex-col gap-2">
@@ -125,12 +126,14 @@ const Login: React.FC<LoginProps> = ({ showLogin, setShowLogin }) => {
                       required
                       onChange={(e) => setPassword(e.target.value)}
                       onKeyDown={onKeyDown}
+                      data-testid="password-input"
                     />
                   </div>
                   <div className="mt-4">
                     <button
                       type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-[#dfd0f5] px-4 py-2 text-sm font-medium text-[#8b3dff] hover:bg-[#d3baf7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                      data-testid="login-button"
                     >
                       Login
                     </button>
