@@ -14,4 +14,7 @@ export default defineConfig({
       "/api": `http://localhost:${PROXY_PORT}`,
     },
   },
+  test: {
+    environment: "jsdom",
+  },
 });
