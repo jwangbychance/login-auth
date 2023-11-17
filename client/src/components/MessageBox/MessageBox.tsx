@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { IMessages } from "../interfaces/IMessage";
-import { viewMessages } from "../api/messages/messages";
+import { IMessages } from "../../interfaces/IMessage";
+import { viewMessages } from "../../api/messages/messages";
 import ReactPaginate from "react-paginate";
 
 interface MessageBoxProps {
@@ -96,7 +96,10 @@ const MessageBox: React.FC<MessageBoxProps> = ({ memberStatus }) => {
 
   return (
     <>
-      <div ref={scrollTopRef} />
+      <div
+        ref={scrollTopRef}
+        data-testid={memberStatus ? "member-messages" : "guest-messages"}
+      />
       {currentMessages.map(({ id, username, content, date }) => (
         <div key={id}>
           <MessageContent
