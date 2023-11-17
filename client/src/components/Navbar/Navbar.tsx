@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import Signup from "../Signup";
+import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
 import { IUser } from "../../interfaces/IUser";

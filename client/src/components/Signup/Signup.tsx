@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment, FormEvent } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { signupUser } from "../api/users/users";
+import { signupUser } from "../../api/users/users";
 
 interface SignupProps {
   showSignUp: boolean;
@@ -117,6 +117,7 @@ const Signup: React.FC<SignupProps> = ({ showSignUp, setShowSignUp }) => {
                       required
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
+                      data-testid="username-input"
                     />
                   </div>
                   <div className="mt-2 flex flex-col gap-2">
@@ -130,6 +131,7 @@ const Signup: React.FC<SignupProps> = ({ showSignUp, setShowSignUp }) => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       onKeyDown={onKeyDown}
+                      data-testid="password-input"
                     />
                   </div>
                   <div className="mt-2 flex flex-col gap-2">
@@ -142,12 +144,14 @@ const Signup: React.FC<SignupProps> = ({ showSignUp, setShowSignUp }) => {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       onKeyDown={onKeyDown}
+                      data-testid="confirm-password-input"
                     />
                   </div>
                   <div className="mt-4">
                     <button
                       type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-[#dfd0f5] px-4 py-2 text-sm font-medium text-[#8b3dff] hover:bg-[#d3baf7] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b3dff] focus-visible:ring-offset-2"
+                      data-testid="signup-button"
                     >
                       Sign up
                     </button>
