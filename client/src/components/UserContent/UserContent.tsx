@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import MessageBox from "./MessageBox/MessageBox";
-import { IUser } from "../interfaces/IUser";
-import CreateMessage from "./CreateMessage/CreateMessage";
-import SideProfile from "./SideProfile/SideProfile";
+import MessageBox from "../MessageBox/MessageBox";
+import { IUser } from "../../interfaces/IUser";
+import CreateMessage from "./../CreateMessage/CreateMessage";
+import SideProfile from "./../SideProfile/SideProfile";
 
 interface UserContentProps {
   user: IUser;
