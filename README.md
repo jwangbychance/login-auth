@@ -4,6 +4,8 @@ Vite React + Express.js app.
 
 Web application, built using the MERN stack using cookie sessions for authentication.
 
+![image](https://github.com/jwangbychance/login-auth/assets/99638105/435266b1-9c62-45da-983d-9f8d3fb3c694)
+
 ## Prerequisites
 
 A MongoDB account is required to set up MongoDB. Learn how to set up MongoDB using this [video](https://www.youtube.com/watch?v=bBA9rUdqmgY).
