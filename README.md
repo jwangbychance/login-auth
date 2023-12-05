@@ -64,7 +64,7 @@ API routes can be accessed similarly with a different port number from the `.env
 
 ## Usage
 
-Check the diagram flow on [Draw.io](https://drive.google.com/file/d/1KpuT38paCEEApsCH4Xb3XWCDRhAqzS1F/view) to see the intended usage of the project.
+Check the diagram flow on [Figma](https://www.figma.com/file/eZXNbW5Lk1DLQAC8E7fWTz/login-auth?type=design&node-id=0%3A1&mode=design&t=3LMWY1wvxfZpVdQj-1) to see the intended usage of the project.
 
 ## Testing Framework
 
