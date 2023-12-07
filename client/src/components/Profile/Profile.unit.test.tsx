@@ -18,6 +18,6 @@ describe("Profile", () => {
       member: false,
     };
     const { queryByText } = render(<Profile user={user} />);
-    expect(queryByText("Member staus: Guest"));
+    expect(queryByText("Member status: Guest"));
   });
 });
