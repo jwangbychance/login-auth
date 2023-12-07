@@ -6,6 +6,7 @@ import router from "./src/routes/apiRoutes";
 import passport from "./src/passport/index";
 import session from "express-session";
 import messages from "./src/data/messages";
+import Message from "./src/models/message";
 
 const mongoDB = process.env.MONGO_CONNECTION;
 mongoose.connect(mongoDB!, {
@@ -14,7 +15,18 @@ mongoose.connect(mongoDB!, {
 } as ConnectOptions);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
-db.collection("messages").insertMany(messages);
+
+// Insert messages data when collection is empty
+const seeder = async () => {
+  const data = await Message.find({}).exec();
+  if (data.length !== 0) {
+    return;
+  }
+
+  db.collection("messages").insertMany(messages);
+};
+
+seeder();
 
 const app: Express = express();
 const PORT = process.env.PORT;
